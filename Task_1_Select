@@ -1,1 +1,9 @@
 select distinct service from  services_weekly;
+
+
+-- Alternate solutions
+SELECT service FROM services_weekly
+GROUP BY service;
+
+SELECT DISTINCT service  FROM services_weekly
+ORDER BY service;
