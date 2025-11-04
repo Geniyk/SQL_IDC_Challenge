@@ -1,0 +1,4 @@
+select patient_id, name, age, satisfaction from patients where service = 'Surgery' and (Satisfaction < 70) ;
+
+-- Alternate Solution
+select patient_id, name, age, satisfaction from patients where service IN ('Surgery') and (Satisfaction < 70) ;
