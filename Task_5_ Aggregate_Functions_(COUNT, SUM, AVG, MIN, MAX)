@@ -1,0 +1,13 @@
+
+
+/* Daily Challenge:
+Question: Calculate the total number of patients admitted, total patients refused, and 
+the average patient satisfaction across all services and weeks. Round the average satisfaction to 2 decimal places.*/
+ 
+select week, service, 
+ sum(patients_admitted) as Total_Patients_Admitted,
+ sum(patients_refused) as Total_Patients_Refused,
+ round(avg(patient_satisfaction),2) as Average_Patient_Satisfaction
+ from services_weekly
+ group by week, service;
+ 
