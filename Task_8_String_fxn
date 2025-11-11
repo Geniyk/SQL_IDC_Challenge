@@ -1,0 +1,18 @@
+
+/* Daily Challenge:
+Question:  Create a patient summary that shows patient_id, full name in uppercase, service in lowercase, 
+age category (if age >= 65 then 'Senior', if age >= 18 then 'Adult', else 'Minor'), 
+and name length. Only show patients whose name length is greater than 10 characters.*/
+-- select * from patients;
+
+select patient_id, UPPER(name) as FULL_NAME_UPPER, 
+LOWER(service) AS Service_Lower, 
+ Length(name) as Name_Length,
+age,
+Case
+ when age >= 65 then 'Senior'
+ When age >=18 then 'Adult'
+ ELSE 'Minor'
+ End as Age_Category
+ from patients
+where  Length(name) > 10;
