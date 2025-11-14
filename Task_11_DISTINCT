@@ -1,0 +1,25 @@
+
+/* Daily Challenge:
+Question: Find all unique combinations of service and event type from the services_weekly table where events are not null or none, 
+along with the count of occurrences for each combination. Order by count descending. */
+-- select * from services_weekly;
+
+Select service,
+event,
+count(*) as occurrences_event_count
+from services_weekly
+WHERE
+event IS NOT NULL AND event <> 'none'
+group by service, event
+order by occurrences_event_count DESC;
+
+-- OR
+
+Select service,
+event,
+count(*) as occurrences_event_count
+from services_weekly
+WHERE
+event IS NOT NULL AND event != 'none'
+group by service, event
+order by Count(*) DESC;
