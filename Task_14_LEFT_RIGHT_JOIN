@@ -1,0 +1,39 @@
+/* Daily Challenge:
+
+**Question:** Create a staff utilisation report showing all staff members (staff_id, staff_name, role, service) and
+the count of weeks they were present (from staff_schedule). 
+Include staff members even if they have no schedule records. Order by weeks present descending.*/
+
+select s. staff_id, s. staff_name, s. role, s. service, 
+COALESCE(ss.week_count, 0) as week_present_count
+From staff as s
+LEFT JOIN ( Select staff_id, COUNT(week) as week_present_count
+FROM staff_schedule 
+WHERE present = 1
+GROUP BY staff_id )  as ss
+ON s.staff_id = ss.staff_id
+ORDER BY week_present_coun DESC;
+
+-- OR
+
+select s.staff_id, s.staff_name, s.role, s.service, 
+COUNT(ss.week_count) as week_present_count
+From staff as s
+LEFT JOIN staff_schedule ss 
+ON s.staff_id = ss.staff_id
+AND ss.present = 1
+GROUP BY s.staff_id, s.staff_name, s.role, s.service
+ORDER BY week_present_coun DESC;
+
+
+
+
+
+
+
+
+
+
+
+
+
