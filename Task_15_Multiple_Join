@@ -1,0 +1,22 @@
+/* Daily Challenge:
+
+**Question:** Create a comprehensive service analysis report for week 20 showing: 
+service name, total patients admitted that week, 
+total patients refused, average patient satisfaction, count of staff assigned to service, 
+and count of staff present that week. Order by patients admitted descending.  */
+
+Select sw.service as Service_Name,
+SUM(sw.patients_admitted) as Total_Patients_Admitted, 
+SUM(sw.patients_refused) as Total_Patients_Refused, 
+AVG(patients_satisfaction) as Average_Patients_Satisfaction, 
+COUNT(DISTINCT s.staff_id) as Staff_Assigned_Count, 
+SUM(CASE WHEN ss.present =1 THEN 1 ELSE 0 END) as Staff_Present_Count
+FROM service_weekly as sw 
+LEFT JOIN staff as s
+ON sw.service = s.service
+LEFT JOIN staff_schedule as ss
+ON s.staff_id = ss.staff_id 
+AND ss.week = 20
+WHERE sw.week = 20
+GROUP BY sw.service
+ORDER BY Total_Patients_Admitted DESC;
