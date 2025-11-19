@@ -11,7 +11,7 @@ SUM(sw.patients_refused) as Total_Patients_Refused,
 AVG(patients_satisfaction) as Average_Patients_Satisfaction, 
 COUNT(DISTINCT s.staff_id) as Staff_Assigned_Count, 
 SUM(CASE WHEN ss.present =1 THEN 1 ELSE 0 END) as Staff_Present_Count
-FROM service_weekly as sw 
+FROM services_weekly as sw 
 LEFT JOIN staff as s
 ON sw.service = s.service
 LEFT JOIN staff_schedule as ss
