@@ -1,0 +1,29 @@
+/* Daily Challenge:
+
+**Question:** Create a comprehensive personnel and patient list showing: identifier (patient_id or staff_id), 
+full name, type ('Patient' or 'Staff'), and associated service. Include only those in 'surgery' or 'emergency' services. Order by type, then service, then name. */
+
+Select patients_id as Identifier, name as Full_name, 'Patients' AS type, service
+FROM Patients
+WHERE service IN('surgery', 'emergency')
+UNION ALL
+Select staff_id as Identifier, staff_name as Full_name, 'Staff' AS type, service
+FROM Staff
+WHERE service IN('surgery', 'emergency')
+ORDER BY type, service, Full_name;
+
+-- OR
+Select patients_id as Identifier, name as Full_name, 'Patients' AS type, service
+FROM Patients
+WHERE LOWER(service) IN('surgery', 'emergency')
+UNION ALL
+Select staff_id as Identifier, staff_name as Full_name, 'Staff' AS type, service
+FROM Staff
+WHERE LOWER(service) IN('surgery', 'emergency')
+ORDER BY type, service, Full_name;
+
+
+
+
+
+
