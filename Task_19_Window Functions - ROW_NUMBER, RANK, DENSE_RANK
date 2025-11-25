@@ -1,0 +1,20 @@
+/*  Daily Challenge:
+**Question:** For each service, rank the weeks by patient satisfaction score (highest first).
+Show service, week, patient_satisfaction, patients_admitted, and the rank. Include only the top 3 weeks per service.  */
+
+Select service, week, patient_satisfaction, patients_admitted, score_rank
+FROM
+(
+SELECT service, week,
+SUM(patient_satisfaction) as Patient_Satisfaction,
+SUM(patients_admitted) as Patients_Admitted,
+RANK() OVER (Partition BY service
+ORDER BY  SUM(patient_satisfaction) DESC ) as score_rank
+FROM services_weekly
+GROUP BY service, week ) AS t
+WHERE score_rank <=3;
+
+
+
+
+
